@@ -34,7 +34,7 @@ class DataTransformation:
 
             cat_pipeline = Pipeline(steps=[
                 ("imputer",SimpleImputer(strategy="most_frequent")),
-                ("one_hot_encoder",OneHotEncoder(handle_unknown="ignore")),
+                ("one_hot_encoder",OneHotEncoder()),
                 ("scaler",StandardScaler(with_mean=False))
             ])
 
@@ -89,10 +89,7 @@ class DataTransformation:
                     file_path=self.data_transformation_config.preprocessor_obj_file_path,
                     obj=preprocessor_obj
                            )
-
-                np.save(os.path.join("artifacts","train.py"),input_features_train_arr)
-                np.save(os.path.join("artifacts","test.py"),input_features_test_arr)
-
+ 
                 return (
                      train_arr,
                      test_arr,
